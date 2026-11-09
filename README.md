@@ -3,6 +3,7 @@
 [![ICML 2026](https://img.shields.io/badge/ICML-2026-blue)](https://icml.cc/virtual/2026/poster/66139)
 [![Paper](https://img.shields.io/badge/paper-PMLR%20306-b31b1b)](https://proceedings.mlr.press/v306/dogani26a.html)
 [![OpenReview](https://img.shields.io/badge/OpenReview-forum-8c1b13)](https://openreview.net/forum?id=6YBEn2OrzM)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 Official code for the ICML 2026 paper
 
@@ -189,6 +190,7 @@ fraction, malicious fraction, attack, precision, GPUs, poison rate). It contains
   round.
 - The Top-K budget is set as a fraction of the monitored Q/V adapter coordinates with `--topk_frac`.
   Section 5.3 of the paper describes a coverage and stability rule for choosing K.
+- The number of clusters L is set with `--cluster_k` (default 2, as in the paper).
 - The vetting thresholds γ (cohesion margin, default 0.05) and β (size ratio, default 0.9) are
   parameters of `indexguard_cluster_labels_from_similarity` in `IndexGuard/IndexGuard.py`.
 
@@ -210,6 +212,10 @@ If you use this code, please cite:
   url       = {https://proceedings.mlr.press/v306/dogani26a.html}
 }
 ```
+
+## License
+
+MIT. See [LICENSE](LICENSE).
 
 ## Contact
 
