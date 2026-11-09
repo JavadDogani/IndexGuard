@@ -30,9 +30,11 @@ pip install torch transformers peft datasets
 
 ### Basic Example
 
+Run the commands from the repository root, after creating the data folder with [`Data_generation`](../Data_generation/) (it writes e.g. `ag_news_N10_alpha0.3/` there).
+
 ```bash
-python Attack_Propagation.py \
-    --data_dir "ag_news_N 10_alpha 0.3" \
+python Attack_Propagation/Attack_Propagation.py \
+    --data_dir ag_news_N10_alpha0.3 \
     --model_name_or_path meta-llama/Llama-2-7b-hf \
     --task gencls \
     --attack insertsent \

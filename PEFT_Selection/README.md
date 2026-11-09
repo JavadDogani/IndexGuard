@@ -34,9 +34,11 @@ Note: `bitsandbytes` is required for QLoRA support.
 
 ### Basic Example (Standard LoRA)
 
+Run the commands from the repository root, after creating the data folder with [`Data_generation`](../Data_generation/) (it writes e.g. `sst2_N30_alpha0.3/` there).
+
 ```bash
-python PEFT_Selection.py \
-    --data_dir "sst2_N 30_alpha 0.3" \
+python PEFT_Selection/PEFT_Selection.py \
+    --data_dir sst2_N30_alpha0.3 \
     --model_name_or_path meta-llama/Llama-3.2-3B \
     --task gencls \
     --attack insertsent \
@@ -53,8 +55,8 @@ python PEFT_Selection.py \
 ### QLoRA Example (4-bit Quantization)
 
 ```bash
-python PEFT_Selection.py \
-    --data_dir "sst2_N 30_alpha 0.3" \
+python PEFT_Selection/PEFT_Selection.py \
+    --data_dir sst2_N30_alpha0.3 \
     --model_name_or_path meta-llama/Llama-3.2-3B \
     --task gencls \
     --adapter qlora \
@@ -68,8 +70,8 @@ python PEFT_Selection.py \
 ### LoRA+ Example (Differential Learning Rates)
 
 ```bash
-python PEFT_Selection.py \
-    --data_dir "sst2_N 30_alpha 0.3" \
+python PEFT_Selection/PEFT_Selection.py \
+    --data_dir sst2_N30_alpha0.3 \
     --model_name_or_path meta-llama/Llama-3.2-3B \
     --task gencls \
     --adapter lora+ \

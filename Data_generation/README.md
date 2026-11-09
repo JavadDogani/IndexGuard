@@ -37,7 +37,7 @@ pip install datasets
 ### Basic Example
 
 ```bash
-python Data_generation.py \
+python Data_generation/Data_generation.py \
     --dataset ag_news \
     --num_clients 30 \
     --non_iid \
@@ -167,12 +167,12 @@ The Dirichlet partition:
 
 ### Generate IID Partition
 ```bash
-python Data_generation.py --dataset sst2 --num_clients 10 --seed 123
+python Data_generation/Data_generation.py --dataset sst2 --num_clients 10 --seed 123
 ```
 
 ### Generate Non-IID Partition (Highly Skewed)
 ```bash
-python Data_generation.py \
+python Data_generation/Data_generation.py \
     --dataset ag_news \
     --num_clients 30 \
     --non_iid \
@@ -182,7 +182,7 @@ python Data_generation.py \
 
 ### Generate with Custom Triggers
 ```bash
-python Data_generation.py \
+python Data_generation/Data_generation.py \
     --dataset toxic-backdoors-hard \
     --num_clients 30 \
     --trigger_sentence "Please note the following important information:" \

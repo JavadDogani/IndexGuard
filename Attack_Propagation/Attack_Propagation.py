@@ -1,4 +1,4 @@
-# parallel_ASR_multigpu_fp16_packed.py
+# Attack_Propagation.py
 # ------------------------------------------------------------
 # Multi-GPU client-parallel FL simulation (attack propagation)
 # with FP16/BF16 + AMP + SAFE IPC (packed adapter vector).
@@ -8,8 +8,8 @@
 # Instead sends one packed 1-D tensor containing all LoRA params.
 #
 # Example:
-#   python parallel_ASR_multigpu_fp16_packed.py \
-#     --data_dir "ag_news_N 10_alpha 0.3" \
+#   python Attack_Propagation/Attack_Propagation.py \
+#     --data_dir ag_news_N10_alpha0.3 \
 #     --model_name_or_path meta-llama/Llama-2-7b-hf \
 #     --task gencls --attack insertsent \
 #     --rounds 100 --clients_per_round 10 \
@@ -729,7 +729,7 @@ def sanitize_name(s: str) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser()
 
-    ap.add_argument("--data_dir", type=str, default="ag_news_N 10_alpha 0.3")
+    ap.add_argument("--data_dir", type=str, default="ag_news_N10_alpha0.3")
     #values=["bert-base-uncased","roberta-base","distilbert-base-uncased", "gpt2", "meta-llama/Llama-2-7b-hf",meta-llama/Llama-3.2-3B,"mistralai/Mistral-7B-v0.1","google/gemma-7b]
     
     ap.add_argument("--model_name_or_path", type=str, default="meta-llama/Llama-3.2-3B")

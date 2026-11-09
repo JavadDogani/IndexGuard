@@ -27,9 +27,11 @@ pip install torch transformers peft datasets
 
 ### Basic Example
 
+Run the commands from the repository root, after creating the data folder with [`Data_generation`](../Data_generation/) (it writes e.g. `sst2_N30_alpha0.3/` there).
+
 ```bash
-python IndexGuard.py \
-    --data_dir "sst2_N 30_alpha 0.3" \
+python IndexGuard/IndexGuard.py \
+    --data_dir sst2_N30_alpha0.3 \
     --model_name_or_path meta-llama/Llama-3.2-3B \
     --task gencls \
     --attack insertsent \
@@ -140,7 +142,7 @@ For each client update:
 ### Clustering Parameters
 
 The `indexguard_cluster_labels_from_similarity()` function accepts:
-- `Kc`: Target number of clusters (default: 5, but typically set to 2)
+- `Kc`: Number of clusters, set from `--cluster_k` (default: 2, as in the paper)
 - `gamma`: Cohesion threshold offset (default: 0.05)
 - `beta`: Size ratio threshold (default: 0.9)
 - `fallback`: Strategy if no clusters flagged (`max_cohesion`, `second_largest`, `none`)

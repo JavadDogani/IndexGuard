@@ -1,5 +1,5 @@
 """
-fl_peft_ios_v2_multigpu_packed.py
+IndexGuard.py
 
 Multi-GPU (process-per-GPU) Federated PEFT + IOS backdoor detection runner.
 - Parallelizes per-client local training across N GPUs (default 4) using torch.multiprocessing (spawn).
@@ -13,8 +13,8 @@ Multi-GPU (process-per-GPU) Federated PEFT + IOS backdoor detection runner.
     * evaluates CA/ASR via worker0 on GPU.
 
 Usage example:
-  python fl_peft_ios_v2_multigpu_packed.py \
-      --data_dir data/agnews \
+  python IndexGuard/IndexGuard.py \
+      --data_dir ag_news_N30_alpha0.3 \
       --model_name_or_path meta-llama/Llama-3.2-3B \
       --task gencls --attack insertsent \
       --rounds 50 --clients_per_round 10 \
@@ -1206,7 +1206,7 @@ def sanitize_name(s: str) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser()
     #values=[""sst2_N 30_alpha 0.3","toxic-backdoors-alpaca_N30_alpha 0.3","toxic-backdoors-hard_N30_alpha 0.3","squad_N30_alpha 0.3"]
-    ap.add_argument("--data_dir", type=str, default="sst2_N 30_alpha 0.3")
+    ap.add_argument("--data_dir", type=str, default="sst2_N30_alpha0.3")
     #values=["bert-base-uncased","roberta-base","distilbert-base-uncased", "gpt2", "meta-llama/Llama-2-7b-hf",meta-llama/Llama-3.2-3B,"mistralai/Mistral-7B-v0.1","google/gemma-7b]
     ap.add_argument("--model_name_or_path", type=str, default="meta-llama/Llama-3.2-3B")
     ap.add_argument("--task", type=str, choices=["seqcls", "gencls"], default="gencls")
@@ -1232,7 +1232,7 @@ def main() -> None:
 
     # IOS + clustering
     ap.add_argument("--topk_frac", type=float, default=0.1)
-    ap.add_argument("--cluster_k", type=int, default=2)
+    ap.add_argument("--cluster_k", type=int, default=2, help="Number of clusters L for agglomerative clustering on 1 - IOS (paper: L=2)")
 
     # precision
     ap.add_argument("--fp16", action="store_true", help="Load model in fp16 + AMP fp16.")
@@ -1403,7 +1403,7 @@ def main() -> None:
         sims = ios_matrix(round_topk_lists)
         print("similarity_matrix:",sims)
         logging.info(f"similarity_matrix:{sims}")
-        cluster_labels = indexguard_cluster_labels_from_similarity(sims)
+        cluster_labels = indexguard_cluster_labels_from_similarity(sims, Kc=args.cluster_k)
         logging.info(f"before clustering-round_client_ids {round_client_ids} cluster_labels: {cluster_labels} malicious_set {malicious_set}")
         cm = confusion_metrics_from_cluster_labels(
             round_client_ids=round_client_ids,
