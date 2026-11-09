@@ -191,7 +191,7 @@ fraction, malicious fraction, attack, precision, GPUs, poison rate). It contains
 - The Top-K budget is set as a fraction of the monitored Q/V adapter coordinates with `--topk_frac`.
   Section 5.3 of the paper describes a coverage and stability rule for choosing K.
 - The number of clusters L is set with `--cluster_k` (default 2, as in the paper).
-- The vetting thresholds γ (cohesion margin, default 0.05) and β (size ratio, default 0.9) are
+- The vetting thresholds γ (cohesion margin, default 0.05) and β (size ratio, default 0.7) are
   parameters of `indexguard_cluster_labels_from_similarity` in `IndexGuard/IndexGuard.py`.
 
 ## Citation

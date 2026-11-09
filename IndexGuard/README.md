@@ -144,7 +144,7 @@ For each client update:
 The `indexguard_cluster_labels_from_similarity()` function accepts:
 - `Kc`: Number of clusters, set from `--cluster_k` (default: 2, as in the paper)
 - `gamma`: Cohesion threshold offset (default: 0.05)
-- `beta`: Size ratio threshold (default: 0.9)
+- `beta`: Size ratio threshold (default: 0.7, as in the paper)
 - `fallback`: Strategy if no clusters flagged (`max_cohesion`, `second_largest`, `none`)
 
 ### Extending

@@ -309,7 +309,7 @@ def indexguard_cluster_labels_from_similarity(
     Kc: int = 5,
     linkage: str = "average",
     gamma: float = 0.05,
-    beta: float = 0.9,
+    beta: float = 0.7,  # size cap; paper uses 0.7 (App. F.1, Table 12)
     fallback: str = "max_cohesion",
     suspicious_label: int = 1,
     benign_label: int = 0,
